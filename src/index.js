@@ -4,4 +4,7 @@ const {setupAuctionListener, getCurrentAuctionInformation} = require("./abi-inte
 
 setupDiscordBot();
 
-setupAuctionListener()
+setTimeout(() => {
+  setupAuctionListener()
+}, 5000)
+

@@ -2,7 +2,7 @@ const { Client } = require('discord.js');
 
 module.exports = {
   setupDiscordBot,
-  postListing,
+  postBid,
 };
 
 const client = new Client({intents: 0});
@@ -17,7 +17,7 @@ async function setupDiscordBot() {
   await client.login(process.env.DISCORDJS_TOKEN);
 }
 
-async function postListing(embed) {
+async function postBid(embed) {
   await client.guilds.fetch();
   const guild = client.guilds.cache.get(process.env.GUILD_ID);
 
