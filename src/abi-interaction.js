@@ -14,8 +14,6 @@ function setupAuctionListener() {
   DPS_AUCTION.events.AuctionBid(() => {
   }).on("connected", function(subscriptionId){
     console.log('SubID: ',subscriptionId);
-
-    handleBid({});
   })
     .on('data', function(event){
       console.log('Event:', event);

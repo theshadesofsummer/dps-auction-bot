@@ -1,10 +1,7 @@
 require('dotenv').config();
 const { setupDiscordBot } = require("./discord-bot.js");
-const {setupAuctionListener, getCurrentAuctionInformation} = require("./abi-interaction");
+const {setupAuctionListener} = require("./abi-interaction");
 
-setupDiscordBot();
-
-setTimeout(() => {
-  setupAuctionListener()
-}, 5000)
-
+setupDiscordBot().then(
+  () => setupAuctionListener()
+);
