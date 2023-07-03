@@ -12,18 +12,14 @@ const DPS_AUCTION = new web3.eth.Contract(ABI_DPS_AUCTION, CONTRACT_ADDRESS_DPS_
 
 function setupAuctionListener() {
   DPS_AUCTION.events.AuctionBid(() => {
-  }).on("connected", function(subscriptionId){
-    console.log('SubID: ',subscriptionId);
+  }).on("connected", function(_subscriptionId){
+    console.log('connected to contract!');
   })
     .on('data', function(event){
       console.log('Event:', event);
       console.log('Owner Wallet Address: ',event.returnValues.owner);
-      //Write send email process here!
 
       handleBid(event)
-    })
-    .on('changed', function(event){
-      //Do something when it is removed from the database.
     })
     .on('error', function(error, receipt) {
       console.log('Error:', error, receipt);
