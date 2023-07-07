@@ -8,7 +8,7 @@ module.exports = function createAuctionSettledEmbed(eventInput) {
       icon_url: 'https://auction.damnedpiratessociety.io/images/dps-logo.png',
     },
     description: `# Amount **${eventInput.returnValues.amount / (10**18)} Doubloons**\n` +
-                 `Bought by: ${eventInput.returnValues.winner}`,
+                 `Bought by: ${eventInput.returnValues.sender.substring(0, 4)}...${eventInput.returnValues.sender.substring(38)}`,
     thumbnail: {
       url: `https://dps-gen1-meta.s3.amazonaws.com/${eventInput.returnValues.tokenId}.png`,
     }

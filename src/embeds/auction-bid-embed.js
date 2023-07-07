@@ -9,7 +9,7 @@ module.exports = function createAuctionBidEmbed(eventInput, auctionInformation) 
     },
     description: `Amount **${auctionInformation.amount / (10**18)} Doubloons**\n` +
                  `Ending: <t:${auctionInformation.endTime}:f> (<t:${auctionInformation.endTime}:R>)\n` +
-                 `Bid by: ${eventInput.returnValues.sender}`,
+                 `Bid by: ${eventInput.returnValues.sender.substring(0, 4)}...${eventInput.returnValues.sender.substring(38)}`,
     thumbnail: {
       url: `https://dps-gen1-meta.s3.amazonaws.com/${auctionInformation.tokenId}.png`,
     }
