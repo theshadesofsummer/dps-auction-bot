@@ -8,8 +8,13 @@ module.exports = {
     .setDescription('How much time is left on the current auction?'),
 
   async execute(interaction) {
+    await interaction.deferReply({ephemeral: true})
+
     const auctionInformation = await getCurrentAuctionInformation();
 
-    interaction.reply(`The current auction will end on <t:${auctionInformation.endTime}:f> (<t:${auctionInformation.endTime}:R>)`)
+    await interaction.editReply({
+      ephemeral: false,
+      content: `The current auction will end on <t:${auctionInformation.endTime}:f> (<t:${auctionInformation.endTime}:R>)`
+    })
   },
 };

@@ -9,9 +9,11 @@ module.exports = {
     .setDescription('What is the current auction?'),
 
   async execute(interaction) {
+    await interaction.deferReply({ephemeral: true})
+
     const auctionInformation = await getCurrentAuctionInformation();
 
-    interaction.reply({
+    await interaction.editReply({
       ephemeral: true,
       embeds: [createAuctionInfoEmbed(auctionInformation)]
     })
