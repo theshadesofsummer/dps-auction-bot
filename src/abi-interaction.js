@@ -11,7 +11,7 @@ const CONTRACT_ADDRESS_DPS_AUCTION = '0xc9B1eF7FF1BFBAF35f68C8650045F350e1CEee65
 const DPS_AUCTION = new web3.eth.Contract(ABI_DPS_AUCTION, CONTRACT_ADDRESS_DPS_AUCTION);
 
 function setupAuctionListener() {
-  DPS_AUCTION.events.AuctionCreated(({fromBlock: 'latest'})
+  DPS_AUCTION.events.AuctionCreated({fromBlock: 'latest'})
     .on("connected", function(_subscriptionId){
       console.log('connected to auction settling!');
     })
@@ -21,9 +21,8 @@ function setupAuctionListener() {
     .on('error', function(error, receipt) {
       console.log('Error:', error, receipt);
     })
-  );
 
-  DPS_AUCTION.events.AuctionBid(({fromBlock: 'latest'})
+  DPS_AUCTION.events.AuctionBid({fromBlock: 'latest'})
     .on("connected", function(_subscriptionId){
       console.log('connected to auction bids!');
     })
@@ -33,9 +32,9 @@ function setupAuctionListener() {
     .on('error', function(error, receipt) {
       console.log('Error:', error, receipt);
     })
-  );
 
-  DPS_AUCTION.events.AuctionSettled(({fromBlock: 'latest'})
+
+  DPS_AUCTION.events.AuctionSettled({fromBlock: 'latest'})
     .on("connected", function(_subscriptionId){
       console.log('connected to auction settling!');
     })
@@ -45,7 +44,6 @@ function setupAuctionListener() {
     .on('error', function(error, receipt) {
       console.log('Error:', error, receipt);
     })
-  );
 }
 
 async function getCurrentAuctionInformation() {
