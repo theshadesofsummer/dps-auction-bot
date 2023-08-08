@@ -1,8 +1,8 @@
-const { postEmbed } = require('./discord-bot.js')
 const createAuctionBidEmbed = require('./embeds/auction-bid-embed')
 const createAuctionSettledEmbed = require('./embeds/auction-settled-embed')
 const createAuctionCreatedEmbed = require('./embeds/auction-created-embed')
 const {getCurrentAuctionInformation} = require("./abi-interaction");
+const {postEmbed} = require("./discord-bot");
 
 module.exports = {
   handleBid,
