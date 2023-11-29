@@ -1,7 +1,7 @@
 require('dotenv').config();
 const { setupDiscordBot } = require("./discord-bot.js");
 const {handleAuctionCreated, handleBid, handleAuctionSettling} = require("./auction-interaction");
-const {DPS_AUCTION} = require("./abi-interaction");
+const {DPS_AUCTION, getCrocInformation} = require("./abi-interaction");
 
 setupDiscordBot().then(
   () => setupAuctionListener()

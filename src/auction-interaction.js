@@ -1,7 +1,7 @@
 const createAuctionBidEmbed = require('./embeds/auction-bid-embed')
 const createAuctionSettledEmbed = require('./embeds/auction-settled-embed')
 const createAuctionCreatedEmbed = require('./embeds/auction-created-embed')
-const {getCurrentAuctionInformation} = require("./abi-interaction");
+const {getCurrentAuctionInformation, getCrocInformation} = require("./abi-interaction");
 const {postEmbed} = require("./discord-bot");
 
 module.exports = {
@@ -13,13 +13,19 @@ module.exports = {
 async function handleBid(eventInput) {
   const auctionInformation = await getCurrentAuctionInformation()
 
-  await postEmbed(createAuctionBidEmbed(eventInput, auctionInformation));
+  const crocMetadata = await getCrocInformation(auctionInformation.tokenId)
+
+  await postEmbed(createAuctionBidEmbed(eventInput, auctionInformation, crocMetadata));
 }
 
 async function handleAuctionSettling(eventInput) {
-  await postEmbed(createAuctionSettledEmbed(eventInput));
+  const crocMetadata = await getCrocInformation(eventInput.returnValues.tokenId)
+
+  await postEmbed(createAuctionSettledEmbed(eventInput, crocMetadata));
 }
 
 async function handleAuctionCreated(eventInput) {
-  await postEmbed(createAuctionCreatedEmbed(eventInput));
+  const crocMetadata = await getCrocInformation(eventInput.returnValues.tokenId)
+
+  await postEmbed(createAuctionCreatedEmbed(eventInput, crocMetadata));
 }

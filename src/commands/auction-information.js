@@ -1,5 +1,5 @@
 const {SlashCommandBuilder}  = require("discord.js");
-const {getCurrentAuctionInformation} = require("../abi-interaction");
+const {getCurrentAuctionInformation, getCrocInformation} = require("../abi-interaction");
 const createAuctionInfoEmbed = require("../embeds/auction-info-embed");
 
 
@@ -9,13 +9,14 @@ module.exports = {
     .setDescription('What is the current auction?'),
 
   async execute(interaction) {
-    await interaction.deferReply({ephemeral: true})
+    await interaction.deferReply({ephemeral: false})
 
     const auctionInformation = await getCurrentAuctionInformation();
+    const crocMetadata = await getCrocInformation(auctionInformation.tokenId)
 
     await interaction.editReply({
-      ephemeral: true,
-      embeds: [createAuctionInfoEmbed(auctionInformation)]
+      ephemeral: false,
+      embeds: [createAuctionInfoEmbed(auctionInformation, crocMetadata)]
     })
   },
 };
