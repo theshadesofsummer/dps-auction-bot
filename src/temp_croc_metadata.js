@@ -1,4 +1,4 @@
-{
+module.exports = {
   "external_url": "https://www.damnedpiratessociety.io/gen1pirates/8626",
   "image": "https://dps-gen1-meta.s3.amazonaws.com/8626.png",
   "name": "El Blanco",
